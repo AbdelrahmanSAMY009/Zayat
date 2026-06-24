@@ -179,16 +179,6 @@ function isFull(slot){
 }
 
 function selectSlot(slot){
-  if(!openToday){
-    showMsg("الحجز مقفول النهارده.","err");
-    return;
-  }
-
-  if(isFull(slot)){
-    showMsg("السلوت دي مقفولة.","err");
-    return;
-  }
-
   selectedSlot = slot;
   showMsg("اخترت سلوت " + slot + ". اكتب اسمك واضغط احجز.", "ok");
   render();
@@ -213,7 +203,7 @@ function render(){
     btn.className = "time-btn";
     if(selectedSlot === slot){ btn.className += " selected"; }
     if(full){ btn.className += " full"; }
-    btn.disabled = full || !openToday;
+    btn.disabled = full;
 
     card.className = full ? "slot full" : "slot";
     status.textContent = full ? "مقفولة" : available + " مكان فاضي";
