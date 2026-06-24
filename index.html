@@ -72,19 +72,19 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 
   <div class="time-grid">
     <button type="button" id="btn-18" class="time-btn" onclick="selectSlot('18:00')">
-      <span>18:00 - 19:00</span><strong id="pick-18">0/4</strong>
+      <span>6:00 - 7:00</span><strong id="pick-18">0/4</strong>
     </button>
 
     <button type="button" id="btn-19" class="time-btn" onclick="selectSlot('19:00')">
-      <span>19:00 - 20:00</span><strong id="pick-19">0/4</strong>
+      <span>7:00 - 8:00</span><strong id="pick-19">0/4</strong>
     </button>
 
     <button type="button" id="btn-20" class="time-btn" onclick="selectSlot('20:00')">
-      <span>20:00 - 21:00</span><strong id="pick-20">0/4</strong>
+      <span>8:00 - 9:00</span><strong id="pick-20">0/4</strong>
     </button>
 
     <button type="button" id="btn-21" class="time-btn" onclick="selectSlot('21:00')">
-      <span>21:00 - 22:00</span><strong id="pick-21">0/4</strong>
+      <span>9:00 - 10:00</span><strong id="pick-21">0/4</strong>
     </button>
   </div>
 
@@ -100,7 +100,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 
   <div class="slot" id="card-18">
     <div class="slot-head">
-      <div class="slot-title">18:00 - 19:00</div>
+      <div class="slot-title">6:00 - 7:00</div>
       <div class="status open" id="status-18">4 مكان فاضي</div>
     </div>
     <div class="players" id="players-18"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
@@ -108,7 +108,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 
   <div class="slot" id="card-19">
     <div class="slot-head">
-      <div class="slot-title">19:00 - 20:00</div>
+      <div class="slot-title">7:00 - 8:00</div>
       <div class="status open" id="status-19">4 مكان فاضي</div>
     </div>
     <div class="players" id="players-19"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
@@ -116,7 +116,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 
   <div class="slot" id="card-20">
     <div class="slot-head">
-      <div class="slot-title">20:00 - 21:00</div>
+      <div class="slot-title">8:00 - 9:00</div>
       <div class="status open" id="status-20">4 مكان فاضي</div>
     </div>
     <div class="players" id="players-20"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
@@ -124,7 +124,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 
   <div class="slot" id="card-21">
     <div class="slot-head">
-      <div class="slot-title">21:00 - 22:00</div>
+      <div class="slot-title">9:00 - 10:00</div>
       <div class="status open" id="status-21">4 مكان فاضي</div>
     </div>
     <div class="players" id="players-21"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
@@ -267,7 +267,7 @@ async function loadBookings(){
       }
     }
 
-    showMsg(openToday ? "تم تحميل الحجوزات من الشيت." : "الحجز مقفول النهارده من إعدادات الأكاديمية.","ok");
+    showMsg(openToday ? "تم الحجز." : "الحجز مقفول النهارده من إعدادات الأكاديمية.","ok");
   }catch(e){
     openToday = true;
   }
