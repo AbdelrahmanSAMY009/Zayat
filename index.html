@@ -262,8 +262,9 @@ async function loadBookings(){
 
     for(var i=0;i<result.bookings.length;i++){
       var row = result.bookings[i];
-      if(data[row.slot]){
-        data[row.slot].push(row.name);
+      var normalizedSlot = String(row.slot).slice(0,5);
+      if(data[normalizedSlot]){
+        data[normalizedSlot].push(row.name);
       }
     }
 
