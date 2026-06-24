@@ -134,7 +134,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 </div>
 
 <script>
-var API_URL = "https://script.google.com/macros/s/AKfycbxRMV3KR9wuP_OAEAn8w9udVrF1dhPt4VF6p13mL3A3fkh-PBiWq_DK0HutTutjJNcm/exec";
+var API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQYfXaaoiaPgVrAlpBXCK2LKGXB9mh1nPJzJfvcFaaDuImxhxkMql9Ox3GirH0edJYE1HyIsUPPIIvS5T-SI4kDRwrKqU43d5gZ1B1ad0z5EC8MoIzfnJrIkSy1mKvvuuzDQDACfwtA2Fjm2B1H7EXgMuyPOvAzHpwWKLhskz5gScTfe5mvlGPlpLci-f-EFhbmSiPhW9vido45G23syRUyr0TIbJZglWEDcwe8gDseJVGcNCgF3qPVNHEH007lEWvFBZ-_K-G1UaDQa6YO6jlZqwdwvA&lib=MiE0S1sP0dDwYlKGrhQiBsycWDt1FBpeY";
 var CAPACITY = 4;
 
 // للتجربة على أي يوم خليه true.
@@ -319,7 +319,6 @@ async function bookNow(){
       document.getElementById("name").value = "";
       document.getElementById("phone").value = "";
       selectedSlot = "";
-      showMsg("تم الحجز للتجربة وظهر تحت السلوت. بعد توصيل الشيت هيتسجل تلقائيًا.","ok");
       render();
     }else if(e.message === "FULL"){
       showMsg("السلوت دي اتقفلت خلاص.","err");
