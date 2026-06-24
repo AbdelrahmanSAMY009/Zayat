@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zayat Ping Slots</title>
+<title>أكاديمية الظايط</title>
 <style>
 *{box-sizing:border-box}
 body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Arial,sans-serif;background:#f5f7fb;color:#14171f}
@@ -11,7 +11,7 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Tahoma,Ari
 .hero{background:#101820;color:white;border-radius:24px;padding:24px;margin-bottom:16px}
 .hero p{color:#cbd5e1;margin:10px 0 0}
 .eyebrow{color:#9ee6bd!important;font-weight:700;margin:0 0 8px!important}
-h1{margin:0;font-size:36px}
+h1{margin:0;font-size:34px}
 .card{background:white;border:1px solid #e3e7ef;border-radius:22px;padding:20px;margin-bottom:16px;box-shadow:0 14px 35px rgba(20,23,31,.07)}
 label{display:block;font-weight:800;margin-bottom:8px}
 input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-size:16px;margin-bottom:16px}
@@ -34,133 +34,76 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 .warning{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:14px;border-radius:16px;font-weight:800;line-height:1.7;margin-bottom:14px}
 .msg{display:none;padding:12px;border-radius:14px;margin-top:12px;font-weight:800;line-height:1.6}
 .msg.ok{display:block;background:#e7f7ef;color:#155c39}
-.msg.warn{display:block;background:#fff1d6;color:#b36b00}
 .msg.err{display:block;background:#ffe7e4;color:#c0392b}
 .small{font-size:14px;color:#687086}
 @media(min-width:700px){.time-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
+
 <body>
 <div class="app">
 
 <section class="hero">
-  <p class="eyebrow">أكاديمية الظايط</p>
-  <h1>احجز ساعتك في البينج بونج</h1>
-  <p id="todayText">...</p>
+  <p class="eyebrow">🏓 أكاديمية الظايط</p>
+  <h1>احجز مكانك في أقرب يوم تدريب متاح</h1>
+  <p id="todayText">جاري تحميل أقرب يوم متاح...</p>
 </section>
 
 <section class="card" id="closedBox" style="display:none">
-  <strong style="color:#b36b00">الحجز مقفول النهارده.</strong>
-  <p class="hint">الأيام المفتوحة حاليا هي اتنين واربع وجمعة.</p>
+  <strong style="color:#b36b00">الحجز مقفول حاليًا.</strong>
+  <p class="hint">سيتم فتح الحجز مرة أخرى من إدارة الأكاديمية.</p>
 </section>
 
 <section class="card">
-  <h2>أنا جاي النهارده</h2>
+  <h2>احجز في أقرب يوم متاح</h2>
 
   <div class="warning">
-    تنبيه مهم: بمجرد تأكيد الحجز، أنت بتحجز مكان فعلي داخل السلوت.  
-    لو محتاج تلغي، لازم تتواصل مع كابتن إنچي قبل الميعاد بـ 4 ساعات على الأقل رقم كابتن إنچي 01222168077.
+    يرجى الالتزام بالموعد المحجوز.
+    <br>
+    في حالة الاعتذار عن الحضور، يرجى التواصل مع كابتن إنچي قبل موعد التدريب بـ <strong>4 ساعات على الأقل</strong>.
+    <br>
+    📞 01222168077
   </div>
 
-  <label>الاسم</label>
+  <label>الاسم *</label>
   <input id="name" placeholder="اكتب اسمك">
 
   <label>رقم الموبايل <span class="small">(اختياري)</span></label>
   <input id="phone" placeholder="مثال: 010...">
 
-  <label>اختار الساعة</label>
+  <label>اختر الموعد</label>
+  <div class="time-grid" id="timeGrid"></div>
 
-  <div class="time-grid">
-    <button type="button" id="btn-18" class="time-btn" onclick="selectSlot('18:00')">
-      <span>6:00 - 7:00</span><strong id="pick-18">0/4</strong>
-    </button>
-
-    <button type="button" id="btn-19" class="time-btn" onclick="selectSlot('19:00')">
-      <span>7:00 - 8:00</span><strong id="pick-19">0/4</strong>
-    </button>
-
-    <button type="button" id="btn-20" class="time-btn" onclick="selectSlot('20:00')">
-      <span>8:00 - 9:00</span><strong id="pick-20">0/4</strong>
-    </button>
-
-    <button type="button" id="btn-21" class="time-btn" onclick="selectSlot('21:00')">
-      <span>9:00 - 10:00</span><strong id="pick-21">0/4</strong>
-    </button>
-  </div>
-
-  <button id="bookBtn" class="book-btn" onclick="bookNow()" disabled>احجز</button>
+  <button id="bookBtn" class="book-btn" onclick="bookNow()" disabled>تأكيد الحجز</button>
   <div id="msg" class="msg"></div>
 
-  <p class="hint">كل سلوت ساعة واحدة مع 2 كباتن وتشيل 4 لاعبين فقط. لما تكمل 4 هتظهر مقفولة ومش هتتحجز.</p>
+  <p class="hint">كل سلوت ساعة واحدة. عند اكتمال العدد، سيتم إغلاق الموعد تلقائيًا.</p>
 </section>
 
 <section class="card">
-  <h2>السلوتس والحجوزات</h2>
-  <button id="refreshBtn" class="book-btn" onclick="loadBookings()" style="background:#eef2f7;color:#14171f;margin-bottom:14px">تحديث</button>
-
-  <div class="slot" id="card-18">
-    <div class="slot-head">
-      <div class="slot-title">6:00 - 7:00</div>
-      <div class="status open" id="status-18">4 مكان فاضي</div>
-    </div>
-    <div class="players" id="players-18"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
-  </div>
-
-  <div class="slot" id="card-19">
-    <div class="slot-head">
-      <div class="slot-title">7:00 - 8:00</div>
-      <div class="status open" id="status-19">4 مكان فاضي</div>
-    </div>
-    <div class="players" id="players-19"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
-  </div>
-
-  <div class="slot" id="card-20">
-    <div class="slot-head">
-      <div class="slot-title">8:00 - 9:00</div>
-      <div class="status open" id="status-20">4 مكان فاضي</div>
-    </div>
-    <div class="players" id="players-20"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
-  </div>
-
-  <div class="slot" id="card-21">
-    <div class="slot-head">
-      <div class="slot-title">9:00 - 10:00</div>
-      <div class="status open" id="status-21">4 مكان فاضي</div>
-    </div>
-    <div class="players" id="players-21"><span class="hint">لسه مفيش حد حاجز هنا</span></div>
-  </div>
+  <h2>المواعيد والحجوزات</h2>
+  <div id="slotsList"></div>
 </section>
 
 </div>
 
 <script>
 var API_URL = "https://script.google.com/macros/s/AKfycbxhy4BtK5Amd0LHTBpHAwONCIOZGthjnUZL9J1_skvvmTrJguUyYUJDN1MbitepU0O_/exec";
-var CAPACITY = 4;
 
-// للتجربة على أي يوم خليه true.
-// بعد توصيل الشيت خليه false.
-var TEST_MODE = false;
-
-var SLOTS = ["18:00","19:00","20:00","21:00"];
-var SLOT_ID = {"18:00":"18","19:00":"19","20:00":"20","21:00":"21"};
 var dayNames = ["الأحد","الاتنين","التلات","الأربع","الخميس","الجمعة","السبت"];
-
 var selectedSlot = "";
-document.getElementById("btn-18").addEventListener("click", function(){ selectSlot("18:00"); });
-document.getElementById("btn-19").addEventListener("click", function(){ selectSlot("19:00"); });
-document.getElementById("btn-20").addEventListener("click", function(){ selectSlot("20:00"); });
-document.getElementById("btn-21").addEventListener("click", function(){ selectSlot("21:00"); });
-var openToday = true;
-var data = {
-  "18:00": [],
-  "19:00": [],
-  "20:00": [],
-  "21:00": []
+var bookingDate = null;
+var todayKey = "";
+var config = {
+  openDays: [1,3,5],
+  extraOpenDates: [],
+  closedDates: [],
+  slots: ["18:00","19:00","20:00","21:00"],
+  capacity: 4,
+  bookingOpen: true
 };
 
-var today = new Date();
-var todayKey = today.toLocaleDateString("en-CA");
-document.getElementById("todayText").textContent = dayNames[today.getDay()] + " - " + todayKey;
+var data = {};
 
 function showMsg(text,type){
   var box = document.getElementById("msg");
@@ -174,75 +117,60 @@ function escapeHtml(str){
   });
 }
 
-function emptyData(){
-  return {"18:00":[],"19:00":[],"20:00":[],"21:00":[]};
+function toKey(date){
+  return date.toLocaleDateString("en-CA");
 }
 
-function isFull(slot){
-  return data[slot].length >= CAPACITY;
+function isOpenDate(date){
+  var key = toKey(date);
+
+  if(!config.bookingOpen) return false;
+  if(config.closedDates.includes(key)) return false;
+  if(config.extraOpenDates.includes(key)) return true;
+
+  return config.openDays.includes(date.getDay());
 }
 
-function selectSlot(slot){
-  selectedSlot = slot;
-  showMsg("اخترت سلوت " + slot + ". اكتب اسمك واضغط احجز.", "ok");
-  render();
-}
+function getNextOpenDate(){
+  var d = new Date();
 
-function render(){
-  for(var i=0;i<SLOTS.length;i++){
-    var slot = SLOTS[i];
-    var id = SLOT_ID[slot];
-    var count = data[slot].length;
-    var available = CAPACITY - count;
-    var full = count >= CAPACITY;
+  for(var i=0;i<30;i++){
+    var test = new Date(d);
+    test.setDate(d.getDate()+i);
 
-    var btn = document.getElementById("btn-" + id);
-    var pick = document.getElementById("pick-" + id);
-    var card = document.getElementById("card-" + id);
-    var status = document.getElementById("status-" + id);
-    var players = document.getElementById("players-" + id);
-
-    pick.textContent = count + "/" + CAPACITY;
-
-    btn.className = "time-btn";
-    if(selectedSlot === slot){ btn.className += " selected"; }
-    if(full){ btn.className += " full"; }
-    btn.disabled = full;
-
-    card.className = full ? "slot full" : "slot";
-    status.textContent = full ? "مقفولة" : available + " مكان فاضي";
-    status.className = full ? "status closed" : "status open";
-
-    if(count === 0){
-      players.innerHTML = '<span class="hint">لسه مفيش حد حاجز هنا</span>';
-    }else{
-      var html = "";
-      for(var j=0;j<data[slot].length;j++){
-        html += '<span class="player">' + escapeHtml(data[slot][j]) + '</span>';
-      }
-      if(full){
-        html += '<div style="width:100%;color:#c0392b;font-weight:900;margin-top:6px">السلوت مقفولة على: ' + data[slot].map(escapeHtml).join("، ") + '</div>';
-      }
-      players.innerHTML = html;
+    if(isOpenDate(test)){
+      return test;
     }
   }
 
-  document.getElementById("bookBtn").disabled = !selectedSlot;
-  document.getElementById("closedBox").style.display = openToday ? "none" : "block";
+  return d;
 }
 
-async function api(action, payload){
+function slotLabel(slot){
+  var h = Number(slot.split(":")[0]);
+  var next = h + 1;
 
-  const params = new URLSearchParams({
-    action,
-    ...payload
-  });
+  function fmt(hour){
+    if(hour === 12) return "12:00";
+    if(hour > 12) return (hour - 12) + ":00";
+    return hour + ":00";
+  }
 
-  const res = await fetch(
-    API_URL + "?" + params.toString()
-  );
+  return fmt(h) + " - " + fmt(next);
+}
 
-  const json = await res.json();
+function emptyData(){
+  var obj = {};
+  for(var i=0;i<config.slots.length;i++){
+    obj[String(config.slots[i]).slice(0,5)] = [];
+  }
+  return obj;
+}
+
+async function api(action,payload){
+  var params = new URLSearchParams(Object.assign({action:action}, payload || {}));
+  var res = await fetch(API_URL + "?" + params.toString());
+  var json = await res.json();
 
   if(!json.ok){
     throw new Error(json.error || "ERROR");
@@ -251,26 +179,145 @@ async function api(action, payload){
   return json;
 }
 
+async function loadConfig(){
+  var result = await api("config");
+  config = result.config;
+
+  config.slots = (config.slots || []).map(function(s){
+    return String(s).slice(0,5);
+  });
+
+  bookingDate = getNextOpenDate();
+  todayKey = toKey(bookingDate);
+
+  document.getElementById("todayText").textContent =
+    "الحجز القادم يوم " + dayNames[bookingDate.getDay()] + " الموافق " + todayKey;
+
+  data = emptyData();
+  buildSlotButtons();
+  buildSlotCards();
+}
+
+function buildSlotButtons(){
+  var grid = document.getElementById("timeGrid");
+  grid.innerHTML = "";
+
+  for(var i=0;i<config.slots.length;i++){
+    var slot = String(config.slots[i]).slice(0,5);
+
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.id = "btn-" + slot.replace(":","");
+    btn.className = "time-btn";
+    btn.onclick = (function(s){
+      return function(){ selectSlot(s); };
+    })(slot);
+
+    btn.innerHTML = "<span>" + slotLabel(slot) + "</span><strong id='pick-" + slot.replace(":","") + "'>0/" + config.capacity + "</strong>";
+    grid.appendChild(btn);
+  }
+}
+
+function buildSlotCards(){
+  var list = document.getElementById("slotsList");
+  list.innerHTML = "";
+
+  for(var i=0;i<config.slots.length;i++){
+    var slot = String(config.slots[i]).slice(0,5);
+    var id = slot.replace(":","");
+
+    var div = document.createElement("div");
+    div.className = "slot";
+    div.id = "card-" + id;
+
+    div.innerHTML =
+      "<div class='slot-head'>" +
+        "<div class='slot-title'>" + slotLabel(slot) + "</div>" +
+        "<div class='status open' id='status-" + id + "'>0 / " + config.capacity + " محجوز</div>" +
+      "</div>" +
+      "<div class='players' id='players-" + id + "'><span class='hint'>لسه مفيش حد حاجز هنا</span></div>";
+
+    list.appendChild(div);
+  }
+}
+
+function selectSlot(slot){
+  if(!config.bookingOpen){
+    showMsg("الحجز مقفول حاليًا.","err");
+    return;
+  }
+
+  if(data[slot] && data[slot].length >= config.capacity){
+    showMsg("الموعد ده اكتمل بالفعل.","err");
+    return;
+  }
+
+  selectedSlot = slot;
+  showMsg("تم اختيار الموعد. راجع البيانات ثم اضغط «تأكيد الحجز».","ok");
+  render();
+}
+
+function render(){
+  for(var i=0;i<config.slots.length;i++){
+    var slot = String(config.slots[i]).slice(0,5);
+    var id = slot.replace(":","");
+    var count = data[slot] ? data[slot].length : 0;
+    var full = count >= config.capacity;
+
+    var btn = document.getElementById("btn-" + id);
+    var pick = document.getElementById("pick-" + id);
+    var card = document.getElementById("card-" + id);
+    var status = document.getElementById("status-" + id);
+    var players = document.getElementById("players-" + id);
+
+    if(!btn || !pick || !card || !status || !players) continue;
+
+    pick.textContent = count + "/" + config.capacity;
+
+    btn.className = "time-btn";
+    if(selectedSlot === slot) btn.className += " selected";
+    if(full) btn.className += " full";
+    btn.disabled = full || !config.bookingOpen;
+
+    card.className = full ? "slot full" : "slot";
+    status.textContent = full ? "مكتمل" : count + " / " + config.capacity + " محجوز";
+    status.className = full ? "status closed" : "status open";
+
+    if(count === 0){
+      players.innerHTML = "<span class='hint'>لسه مفيش حد حاجز هنا</span>";
+    }else{
+      var html = "";
+      for(var j=0;j<data[slot].length;j++){
+        html += "<span class='player'>👤 " + escapeHtml(data[slot][j]) + "</span>";
+      }
+      players.innerHTML = html;
+    }
+  }
+
+  document.getElementById("bookBtn").disabled = !selectedSlot || !config.bookingOpen;
+  document.getElementById("closedBox").style.display = config.bookingOpen ? "none" : "block";
+}
 
 async function loadBookings(){
   try{
-    if(TEST_MODE){ throw new Error("NO_API"); }
-
     var result = await api("list",{date:todayKey});
+    config = result.config;
+    config.slots = (config.slots || []).map(function(s){ return String(s).slice(0,5); });
+
     data = emptyData();
-    openToday = !!result.openToday;
 
     for(var i=0;i<result.bookings.length;i++){
       var row = result.bookings[i];
-      var normalizedSlot = String(row.slot).slice(0,5);
-      if(data[normalizedSlot]){
-        data[normalizedSlot].push(row.name);
+      var slot = String(row.slot).slice(0,5);
+
+      if(data[slot]){
+        data[slot].push(row.name);
       }
     }
 
-    showMsg(openToday ? "اكتب اسمك و رقم تليفونك حدد معاد الحجز المناسب ليك." : "الحجز مقفول النهارده.","ok");
+    showMsg("اختر الساعة المناسبة ثم اضغط «تأكيد الحجز». سيتم تسجيل الحجز في أقرب يوم متاح.","ok");
   }catch(e){
-    openToday = true;
+    showMsg("حصلت مشكلة في تحميل الحجوزات.","err");
   }
 
   render();
@@ -280,13 +327,8 @@ async function bookNow(){
   var name = document.getElementById("name").value.trim();
   var phone = document.getElementById("phone").value.trim();
 
-  if(!openToday){
-    showMsg("الحجز مقفول النهارده.","err");
-    return;
-  }
-
   if(!selectedSlot){
-    showMsg("اختار الساعة الأول.","err");
+    showMsg("اختار الموعد الأول.","err");
     return;
   }
 
@@ -295,48 +337,66 @@ async function bookNow(){
     return;
   }
 
-  if(isFull(selectedSlot)){
-    showMsg("السلوت دي مقفولة.","err");
+  if(data[selectedSlot] && data[selectedSlot].length >= config.capacity){
+    showMsg("الموعد ده اكتمل بالفعل.","err");
     return;
   }
 
-  var confirmMessage = "تأكيد الحجز يعني إنك أخدت مكان فعلي في السلوت. لو هتلغي لازم تتواصل مع كابتن إنچي قبل الميعاد بـ 4 ساعات على الأقل. هل تأكد الحجز؟";
-  if(!confirm(confirmMessage)){
-    return;
-  }
+  var confirmMessage =
+    "سيتم حجز مكانك يوم " + dayNames[bookingDate.getDay()] + " الموافق " + todayKey + ".\n\n" +
+    "في حالة الاعتذار، يُرجى التواصل مع كابتن إنچي قبل الموعد بـ 4 ساعات على الأقل.\n\n" +
+    "هل تريد تأكيد الحجز؟";
+
+  if(!confirm(confirmMessage)) return;
 
   try{
-    if(TEST_MODE){ throw new Error("NO_API"); }
+    await api("book",{
+      date: todayKey,
+      slot: selectedSlot,
+      name: name,
+      phone: phone
+    });
 
-    await api("book",{date:todayKey,slot:selectedSlot,name:name,phone:phone});
+    var bookedSlot = selectedSlot;
+
     document.getElementById("name").value = "";
     document.getElementById("phone").value = "";
     selectedSlot = "";
-    showMsg("تم تسجيل الحجز. لو هتلغي، تواصل مع كابتن إنچي قبل الميعاد بـ 4 ساعات على الأقل.","ok");
+
+    showMsg(
+      "✅ تم تأكيد حجزك بنجاح يوم " +
+      dayNames[bookingDate.getDay()] +
+      " من " +
+      slotLabel(bookedSlot) +
+      ".",
+      "ok"
+    );
+
     await loadBookings();
+
   }catch(e){
-    if(e.message === "NO_API"){
-      data[selectedSlot].push(name);
-      document.getElementById("name").value = "";
-      document.getElementById("phone").value = "";
-      selectedSlot = "";
-      render();
-    }else if(e.message === "FULL"){
-      showMsg("السلوت دي اتقفلت خلاص.","err");
+    if(e.message === "FULL"){
+      showMsg("الموعد ده اكتمل بالفعل.","err");
       await loadBookings();
     }else if(e.message === "DUPLICATE"){
-      showMsg("الاسم ده حاجز بالفعل النهارده.","err");
-    }else if(e.message === "CLOSED"){
-      showMsg("الحجز مقفول في اليوم ده.","err");
-      await loadBookings();
+      showMsg("لديك حجز بالفعل في هذا اليوم.","err");
+    }else if(e.message === "BOOKING_CLOSED"){
+      showMsg("الحجز مقفول حاليًا.","err");
     }else{
       showMsg("حصلت مشكلة في تسجيل الحجز.","err");
     }
   }
 }
 
-render();
-loadBookings();
+async function init(){
+  await loadConfig();
+  await loadBookings();
+  render();
+
+  setInterval(loadBookings,15000);
+}
+
+init();
 </script>
 </body>
 </html>
