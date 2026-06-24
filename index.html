@@ -146,6 +146,10 @@ var SLOT_ID = {"18:00":"18","19:00":"19","20:00":"20","21:00":"21"};
 var dayNames = ["الأحد","الاتنين","التلات","الأربع","الخميس","الجمعة","السبت"];
 
 var selectedSlot = "";
+document.getElementById("btn-18").addEventListener("click", function(){ selectSlot("18:00"); });
+document.getElementById("btn-19").addEventListener("click", function(){ selectSlot("19:00"); });
+document.getElementById("btn-20").addEventListener("click", function(){ selectSlot("20:00"); });
+document.getElementById("btn-21").addEventListener("click", function(){ selectSlot("21:00"); });
 var openToday = true;
 var data = {
   "18:00": [],
@@ -223,7 +227,7 @@ function render(){
     }
   }
 
-  document.getElementById("bookBtn").disabled = !selectedSlot || !openToday;
+  document.getElementById("bookBtn").disabled = !selectedSlot;
   document.getElementById("closedBox").style.display = openToday ? "none" : "block";
 }
 
