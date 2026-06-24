@@ -146,19 +146,29 @@ function getNextOpenDate(){
   return d;
 }
 
-function slotLabel(slot){
-  var h = Number(slot.split(":")[0]);
-  var next = h + 1;
+function slotLabel(slot, nextSlot){
 
-  function fmt(hour){
-    if(hour === 12) return "12:00";
-    if(hour > 12) return (hour - 12) + ":00";
-    return hour + ":00";
+  function format(time){
+    var parts = time.split(":");
+    var h = Number(parts[0]);
+    var m = parts[1];
+
+    var displayHour = h > 12 ? h - 12 : h;
+    if(displayHour === 0) displayHour = 12;
+
+    return displayHour + ":" + m;
   }
 
-  return fmt(h) + " - " + fmt(next);
-}
+  if(nextSlot){
+    return format(slot) + " - " + format(nextSlot);
+  }
 
+  var parts = slot.split(":");
+  var endHour = Number(parts[0]) + 1;
+  var end = String(endHour).padStart(2,"0") + ":" + parts[1];
+
+  return format(slot) + " - " + format(end);
+}
 function emptyData(){
   var obj = {};
   for(var i=0;i<config.slots.length;i++){
