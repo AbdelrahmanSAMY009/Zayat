@@ -134,7 +134,7 @@ input{width:100%;padding:14px;border:1px solid #dfe4ee;border-radius:14px;font-s
 </div>
 
 <script>
-var API_URL = "https://script.googleusercontent.com/macros/echo?user_content_key=AUkAhnQYfXaaoiaPgVrAlpBXCK2LKGXB9mh1nPJzJfvcFaaDuImxhxkMql9Ox3GirH0edJYE1HyIsUPPIIvS5T-SI4kDRwrKqU43d5gZ1B1ad0z5EC8MoIzfnJrIkSy1mKvvuuzDQDACfwtA2Fjm2B1H7EXgMuyPOvAzHpwWKLhskz5gScTfe5mvlGPlpLci-f-EFhbmSiPhW9vido45G23syRUyr0TIbJZglWEDcwe8gDseJVGcNCgF3qPVNHEH007lEWvFBZ-_K-G1UaDQa6YO6jlZqwdwvA&lib=MiE0S1sP0dDwYlKGrhQiBsycWDt1FBpeY";
+var API_URL = "https://script.google.com/macros/s/AKfycbxhy4BtK5Amd0LHTBpHAwONCIOZGthjnUZL9J1_skvvmTrJguUyYUJDN1MbitepU0O_/exec";
 var CAPACITY = 4;
 
 // للتجربة على أي يوم خليه true.
@@ -237,10 +237,25 @@ function render(){
   document.getElementById("closedBox").style.display = openToday ? "none" : "block";
 }
 
-async function api(action,payload){
-  if(!API_URL || API_URL.indexOf("PUT_YOUR") >= 0){
-    throw new Error("NO_API");
+async function api(action, payload){
+
+  const params = new URLSearchParams({
+    action,
+    ...payload
+  });
+
+  const res = await fetch(
+    API_URL + "?" + params.toString()
+  );
+
+  const json = await res.json();
+
+  if(!json.ok){
+    throw new Error(json.error || "ERROR");
   }
+
+  return json;
+}
 
   var res = await fetch(API_URL,{
     method:"POST",
