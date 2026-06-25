@@ -131,19 +131,67 @@ function isOpenDate(date){
   return config.openDays.includes(date.getDay());
 }
 
-function getNextOpenDate(){
-  var d = new Date();
+function getLastSlotEndTime() {
 
-  for(var i=0;i<30;i++){
-    var test = new Date(d);
-    test.setDate(d.getDate()+i);
+  if(!config.slots.length){
+    return {h:22,m:0};
+  }
+
+  var last = String(config.slots[config.slots.length-1]).slice(0,5);
+
+  var parts = last.split(":");
+
+  var h = Number(parts[0]);
+  var m = Number(parts[1]);
+
+  // نهاية آخر سلوت = بعد ساعة
+  h++;
+
+  if(h >= 24){
+    h -= 24;
+  }
+
+  return {
+    h:h,
+    m:m
+  };
+}
+
+function getNextOpenDate(){
+
+  var now = new Date();
+
+  // لو النهارده يوم تدريب ولسه آخر سلوت مخلصتش
+  if(isOpenDate(now)){
+
+    var end = getLastSlotEndTime();
+
+    if(
+      now.getHours() < end.h ||
+      (
+        now.getHours() === end.h &&
+        now.getMinutes() < end.m
+      )
+    ){
+      return now;
+    }
+
+  }
+
+  // غير كده هات أقرب يوم بعده
+  for(var i=1;i<30;i++){
+
+    var test = new Date(now);
+
+    test.setDate(now.getDate()+i);
 
     if(isOpenDate(test)){
       return test;
     }
+
   }
 
-  return d;
+  return now;
 }
 
 function slotLabel(slot, nextSlot){
